@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'learning_logs/base.html' %}
+
+{% block header %}
+    <div class="jumbotron">
+        <h1>记录您的学习</h1>
+    </div>
+{% endblock header %}
+
+{%  block content%}
+    <h2>
+    <a href="{% url 'users:register' %}">注册一个账号</a> 用来记录您的学习日志和学习的主题。
+    </h2>
+    <h2>
+    每当您学习有关某个主题的新知识时，请输入总结您所学。
+    </h2>
+{% endblock content %}
+</body>
+</html>

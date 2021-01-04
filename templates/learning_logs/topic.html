@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'learning_logs/base.html' %}
+
+{% block header %}
+    <h2>{{ topic}}</h2>
+    <a href="{% url 'learning_logs:edit_topic' topic.id %}">编辑主题</a>
+    <a href="{% url 'learning_logs:delete_topic' topic.id %}">删除主题</a>
+{% endblock header %}
+
+{%  block content%}
+    <p>
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">添加内容</a>
+
+    </p>
+
+    {% for entry in entries %}
+        <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+            {{ entry.date_added|date:'M d, Y H:i' }}
+            <small>
+            <a href="{% url 'learning_logs:edit_entry' entry.id %}">编辑内容</a>
+            <a href="{% url 'learning_logs:delete_entry' entry.id %}">删除内容</a>
+            </small>
+            </h3>
+        </div>
+        <div class="panel-body">
+        {{ entry.text|linebreaks }}
+        </div>
+        </div> <!-- panel -->
+    {% empty %}
+        这个主题没有内容。
+    {% endfor %}
+{% endblock content %}
+
+</body>
+</html>
